@@ -1,0 +1,1 @@
+import{_ as t}from"./main-Cvjrty7b.js";import"./vendors-0sTjTEje.js";let n={default:()=>t(()=>import("./model-f4gKkuOf.js"),[])};async function i(o){const r=n[o];if(!r)throw new Error("Unknown projectId: "+o);return await r()}export{i as loadModel,n as loadModelFn};

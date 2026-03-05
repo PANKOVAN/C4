@@ -1,0 +1,1 @@
+import{_ as t}from"./main-Cvjrty7b.js";import"./vendors-0sTjTEje.js";let n={default:()=>t(()=>import("./d2-wRnXI3PS.js"),[])};async function i(o){const r=n[o];if(!r)throw new Error("Unknown projectId: "+o);return await r()}export{i as loadD2Sources,n as loadD2SourcesFn};

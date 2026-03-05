@@ -1,0 +1,26 @@
+model {
+    extend mkicsai.storage {
+        session = storage 'Сессии' {
+            description 'Хранилище сессий пользователей системы.'
+            icon tech:redis
+        }
+        pg = storage 'База данных' {
+            description 'Хранилище постоянных данных(нормативно справочная информация) и условно постоянных данных(оперативные данные, которые нужно хранить не менее 10 дней).'
+            icon tech:postgresql
+
+        }
+        log = storage 'Журналы' {
+            description 'Хранилище журналов об ошибках и отклонениях в работе системы.'
+
+        }
+        monitoring = storage 'Мониторинг' {
+            description 'Хранилище данных для мониторинга работы системы.'
+            icon tech:prometheus
+        }
+        cache = storage 'Кеш данных' {
+            description 'Хранилище временных данных, для ускорения работы системы.'
+            icon tech:redis
+        }
+    }
+
+}

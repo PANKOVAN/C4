@@ -1,0 +1,74 @@
+{
+    "$schema": "https://likec4.dev/schemas/config.json",
+    "styles": {
+        "theme": {
+            "colors": {
+                "primary": {
+                    "elements": {
+                        "fill": "#ffffff",
+                        "stroke": "#1f2933",
+                        "hiContrast": "#111827",
+                        "loContrast": "#4b5563"
+                    },
+                    "relationships": {
+                        "line": "#4b5563",
+                        "label": "#111827",
+                        "labelBg": "rgba(255,255,255,0.9)"
+                    }
+                },
+                "secondary": {
+                    "elements": {
+                        "fill": "#ffffff",
+                        "stroke": "#1f2933",
+                        "hiContrast": "#111827",
+                        "loContrast": "#4b5563"
+                    },
+                    "relationships": {
+                        "line": "#4b5563",
+                        "label": "#111827",
+                        "labelBg": "rgba(255,255,255,0.9)"
+                    }
+                },
+                "amber": {
+                    "elements": {
+                        "fill": "#ffffff",
+                        "stroke": "#92400e",
+                        "hiContrast": "#111827",
+                        "loContrast": "#4b5563"
+                    },
+                    "relationships": {
+                        "line": "#92400e",
+                        "label": "#111827",
+                        "labelBg": "rgba(255,255,255,0.9)"
+                    }
+                },
+                "muted": {
+                    "elements": {
+                        "fill": "#ffffff",
+                        "stroke": "#6b7280",
+                        "hiContrast": "#111827",
+                        "loContrast": "#4b5563"
+                    },
+                    "relationships": {
+                        "line": "#6b7280",
+                        "label": "#111827",
+                        "labelBg": "rgba(255,255,255,0.9)"
+                    }
+                }
+            }
+        },
+        "defaults": {
+            "color": "primary",
+            "group": {
+                "color": "primary",
+                "opacity": 0,
+                "border": "dashed"
+            },
+            "relationship": {
+                "color": "primary",
+                "line": "normal",
+                "arrow": "vee"
+            }
+        }
+    }
+}

@@ -1,0 +1,39 @@
+model {
+  extend external {
+    input = external_queue 'Входные очереди'
+    output = external_queue 'Выходные очереди'
+    services = external_service 'Внешние сервисы'
+  }
+  extend external.input {
+    bin = external_queue 'BIN' {
+      description 'Входная очередь сообщений о прохождении подвижного через контрольные пункты'
+    }
+    sts = external_queue 'STS' {
+      description 'Входная очередь сообщений о состоянии оборудования.'
+    }
+  }
+
+  extend external.output {
+    ecma = external_queue 'ECMA' {
+      description 'Выходная очередь сообщений о сбоях и ошибках в работе оборудования.'
+    }
+    m2033 = external_queue '2033' {
+      description 'Выходная очередь сообщений о прохождении подвижного через контрольные пункты в формате 2033.'
+    }
+  }
+
+  extend external.services {
+    esp = external_service 'ЕС ПУЛ' {
+      description 'Внешний сервис для получения данных о локомотивах.'
+    }
+    aso = external_service 'ЕМД ПП' {
+      description 'Внешний сервис для получения данных о прохождении подвижного состава по данным внесенным в ЕМД ПП.'
+    }
+    esr = external_service 'Сервис НСИ' {
+      description 'Внешний сервис для получения нормативно справочной информации (дороги и остановочные пункты). '
+    }
+  }
+
+
+
+}

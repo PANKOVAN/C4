@@ -1,0 +1,9 @@
+views {
+    view c1 {
+        title 'КИ-Ц САИ ПС.ИНП (системный контекст)'
+        autoLayout LeftRight
+
+        include users, mkicsai, external.input, external.output, external.services
+
+    }
+}

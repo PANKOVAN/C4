@@ -1,0 +1,118 @@
+views {
+    view c3_service {
+        title 'КИ-Ц САИ ПС.ИНП (основной сервис)'
+        autoLayout LeftRight
+        group 'Основной сервис' {
+            include mkicsai.schedule
+            group 'Рабочие процессы' {
+                include mkicsai.worker1
+                include mkicsai.worker2
+            }
+
+        }
+
+        include mkicsai.storage.log
+        include mkicsai.storage.monitoring
+    }
+    view c3_worker_aoc {
+        title 'Чтение BIN'
+        description 'Рабочий процесс читает BIN сообщения из входной очереди и
+      сохраняет в БД, практически без обработки.'
+        autoLayout LeftRight
+
+        include mkicsai.aoc
+        include mkicsai.ecma
+
+        include mkicsai.storage.pg
+        include external.input.bin
+    }
+    view c3_worker_bin {
+        title 'Обработка BIN'
+        description 'Рабочий читает из базы сообщения BIN, расшифровывает их, формирует сообщения 2033 и сохраняет их в БД'
+        autoLayout LeftRight
+
+        include mkicsai.bin
+        include mkicsai.ecma
+
+        include mkicsai.storage.pg
+        include mkicsai.storage.cache
+    }
+    view c3_worker_sts {
+        title 'Обработка сигналов STS'
+        description 'Рабочий процесс читает сигналы STS из входной очереди, обрабатывает их и сохраняет в БД'
+        autoLayout LeftRight
+
+        include mkicsai.sts
+        include mkicsai.ecma
+
+        include mkicsai.storage.pg
+        include mkicsai.storage.cache
+        include external.input.sts
+    }
+    view c3_worker_esp {
+        title 'Обновление данных о локомотивах.'
+        description 'Рабочий процесс читает данные о локомотивах из ЕС ПУЛ'
+        autoLayout LeftRight
+
+        include mkicsai.ecma
+        include mkicsai.esp
+
+        include mkicsai.storage.pg
+        include mkicsai.storage.cache
+        include external.input.sts
+    }
+    view c3_worker_aso {
+        title 'Обновление данных ЕМДПП'
+        description 'Рабочий процесс читает данные о прохождении подвижного состава из сервиса ЕМДПП, сопоставляет их с реальными проездами и сохраняет в БД.'
+        autoLayout LeftRight
+
+        include mkicsai.aso
+        include mkicsai.ecma
+
+        include mkicsai.storage.pg
+        include mkicsai.storage.cache
+        include external.services.aso
+    }
+    view c3_worker_2033 {
+        title 'Отсылка сообщений 2033'
+        description 'Рабочий процесс читает сформированные сообщения 2033 из БД, отправляет в основную выходную очередь 2033 и всем заинтересованным подписчикам.'
+        autoLayout LeftRight
+
+        include mkicsai.ecma
+        include mkicsai.m2033
+        include mkicsai.storage.cache
+
+        include mkicsai.storage.pg
+        include external.output.m2033
+    }
+    view c3_worker_clone {
+        title 'Подготовка и удаление партиций'
+        description 'Рабочий процесс подготавливает и удаляет партиции таблиц в БД.'
+        autoLayout LeftRight
+
+        include mkicsai.clone
+
+        include mkicsai.storage.pg
+    }
+    view c3_worker_ecma {
+        title 'Отсылка сообщений ECMA'
+        description 'Рабочий процесс формирует сообщения ECMA из данных ошибок и отправляет их в основную выходную очередь ECMA.'
+        autoLayout LeftRight
+
+        include mkicsai.ecma
+
+        include mkicsai.storage.cache
+        include mkicsai.storage.pg
+        include external.output.ecma
+    }
+    view c3_worker_esr {
+        title 'Обновление нормативно справочной информации'
+        description 'Рабочий процесс читает данные из сервиса НСИ и обновляет справочники в БД.'
+        autoLayout LeftRight
+
+        include mkicsai.esr
+
+        include mkicsai.storage.pg
+        include external.services.esr
+    }
+}

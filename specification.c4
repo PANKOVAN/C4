@@ -1,0 +1,83 @@
+specification {
+    // Define whatever you want
+    element system_user {
+        title 'Пользователь'
+        description 'Пользователь системы'
+        style {
+            shape person
+            color primary
+            opacity 10%
+        }
+    }
+    element system {
+        title 'Система'
+        description 'Система'
+        style {
+            shape rectangle
+            opacity 10%
+        }
+    }
+    element container {
+        title 'Контейнер'
+        description 'Контейнер'
+        style {
+            shape rectangle
+            opacity 10%
+        }
+    }
+    element component {
+        title 'Компонент'
+        description 'Компонент'
+        style {
+            shape component
+            opacity 10%
+            icon tech:nodejs
+        }
+    }
+    element worker {
+        title 'Рабочий процесс'
+        description 'Рабочий процесс'
+        style {
+            shape component
+            color secondary
+            opacity 10%
+            icon tech:nodejs
+        }
+    }
+    element storage {
+        title 'Хранилище'
+        description 'Хранилище'
+        style {
+            shape storage
+            color green
+            opacity 10%
+        }
+    }
+    element external_service {
+        title 'Внешний сервис'
+        description 'Внешний сервис'
+        style {
+            shape rectangle
+            color gray
+            opacity 10%
+        }
+    }
+    element external_queue {
+        title 'Внешняя очередь'
+        description 'Внешняя очередь'
+        style {
+            shape queue
+            color gray
+            opacity 10%
+        }
+    }
+    element external_db {
+        title 'Внешняя база данных'
+        description 'Внешняя база данных'
+        style {
+            shape storage
+            color gray
+            opacity 10%
+        }
+    }
+}

@@ -1,0 +1,73 @@
+model {
+    extend mkicsai {
+        schedule = component 'Планировщик' {
+            description 'Запуск рабочих процессов по расписанию, логирование исключений, сбор данных для мониторинга.'
+            -> worker1
+            -> worker2
+            -> storage.log
+            -> storage.monitoring
+            -> aoc
+            -> bin
+            -> sts
+            -> ecma
+            -> esp
+            -> aso
+            -> m2033
+            -> clone
+        }
+        worker1 = worker 'Рабочий процесс 1'
+        worker2 = worker 'Рабочий процесс N'
+        aoc = worker 'Чтение и первичная обработка BIN' {
+            -> external.bin
+            -> storage.pg
+            -> ecma
+        }
+        bin = worker 'Обработка BIN' {
+            -> storage.pg
+            -> storage.cache
+            -> ecma { style { color red } }
+        }
+        sts = worker 'Чтение и обработка STS' {
+            -> external.sts
+            -> storage.pg
+            -> storage.cache
+            -> ecma { style { color red } }
+        }
+        ecma = worker 'Анализ ошибок и отправка в ECMA' {
+            style { color red }
+            -> storage.cache
+            -> external.ecma
+        }
+        esp = worker 'Чтение и обработка данных из ЕС ПУЛ' {
+            -> external.esp
+            -> storage.cache
+            -> storage.pg
+            -> ecma { style { color red } }
+        }
+        aso = worker 'Чтение и обработка данных из ЕМД ПП' {
+            -> external.aso
+            -> storage.pg
+            -> storage.cache
+            -> ecma { style { color red } }
+        }
+        m2033 = worker 'Формирование сообщений 2033' {
+            -> storage.pg
+            -> external.m2033
+            -> ecma { style { color red } }
+        }
+        esr = worker 'Обновление НСИ' {
+            -> storage.pg
+            -> external.esr
+            -> ecma { style { color red } }
+        }
+        clone = worker 'Создание и чистка оперативных таблиц' {
+            -> storage.pg
+            -> ecma { style { color red } }
+        }
+
+        transfer = component 'Конвертирование данных' {
+            description 'Конвертирует данные из старой базы данных в новую'
+            -> storage.pg
+        }
+    }
+}

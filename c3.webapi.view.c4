@@ -1,0 +1,22 @@
+views {
+  view c3_client {
+    title 'КИ-Ц САИ ПС.ИНП (web приложение)'
+    autoLayout LeftRight
+
+    include users
+    include users.admin
+    include users.editor
+    include users.analyst
+
+    include mkicsai.frontend
+    include mkicsai.backend
+
+    include mkicsai.storage
+    include mkicsai.storage.session
+    include mkicsai.storage.pg
+    include mkicsai.storage.log
+    include mkicsai.storage.monitoring
+
+
+  }
+}

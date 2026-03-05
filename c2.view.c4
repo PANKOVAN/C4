@@ -1,0 +1,19 @@
+views {
+  view c2 {
+    title 'КИ-Ц САИ ПС.ИНП (контекст контейнера)'
+    autoLayout LeftRight
+
+    include users
+
+    include mkicsai.frontend
+    include mkicsai.backend
+    include mkicsai.storage
+    include mkicsai.service
+
+    include external
+    include external.input, external.input.bin, external.input.sts
+    include external.output, external.output.m2033, external.output.ecma
+    include external.services, external.services.aso, external.services.esr
+
+  }
+}

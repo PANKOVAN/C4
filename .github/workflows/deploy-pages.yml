@@ -26,16 +26,26 @@ jobs:
       - uses: actions/configure-pages@v4
         id: pages
 
-      - name: Build LikeC4
+      # LikeC4 кладётся в viewer/, в корне сайта — лендинг (аналог вступления из README)
+      - name: Build LikeC4 and assemble site
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: |
-          npx likec4@latest build \
-            --base "${{ steps.pages.outputs.base_path || '/' }}" \
-            --output dist
+          set -e
+          if [ -z "$BASE_PATH" ] || [ "$BASE_PATH" = "" ]; then
+            LIKEC4_BASE="/viewer/"
+          else
+            LIKEC4_BASE="${BASE_PATH}/viewer/"
+          fi
+          npx likec4@latest build --base "$LIKEC4_BASE" --output dist
+          mkdir -p _site/viewer
+          cp -a dist/. _site/viewer/
+          cp site/index.html _site/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./_site
 
   deploy:
     environment:

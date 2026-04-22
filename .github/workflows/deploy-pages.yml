@@ -26,12 +26,14 @@ jobs:
       - uses: actions/configure-pages@v4
         id: pages
 
-      # LikeC4 кладётся в viewer/, в корне сайта — лендинг (аналог вступления из README)
-      - name: Build LikeC4 and assemble site
+      # В корне сайта — HTML из readme.md (GitHub Pages не отдаёт .md как стартовую страницу)
+      - name: Build LikeC4, render README, assemble site
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: |
           set -e
+          sudo apt-get update -qq
+          sudo apt-get install -y pandoc
           if [ -z "$BASE_PATH" ] || [ "$BASE_PATH" = "" ]; then
             LIKEC4_BASE="/viewer/"
           else
@@ -40,7 +42,7 @@ jobs:
           npx likec4@latest build --base "$LIKEC4_BASE" --output dist
           mkdir -p _site/viewer
           cp -a dist/. _site/viewer/
-          cp site/index.html _site/index.html
+          pandoc readme.md -t html5 -s --metadata title="КИ-Ц САИ ПС.ИНП" -o _site/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

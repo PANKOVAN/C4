@@ -43,7 +43,14 @@ jobs:
           mkdir -p _site/viewer
           cp -a dist/. _site/viewer/
           if [ -d images ]; then mkdir -p _site/images; cp -a images/. _site/images/; fi
-          pandoc readme.md -t html5 -s --metadata title="КИ-Ц САИ ПС.ИНП" -o _site/index.html
+          REV="${GITHUB_SHA:-local}"
+          REV_SHORT="${REV:0:7}"
+          printf '<footer class="ghp-build"><p><small>Ревизия: %s</small></p></footer>\n' \
+            "$REV_SHORT" > _pandoc_after_body.html
+          pandoc readme.md -t html5 -s --metadata title="КИ-Ц САИ ПС.ИНП" \
+            --include-in-header=.github/pandoc-head.html \
+            --include-after-body=_pandoc_after_body.html \
+            -o _site/index.html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

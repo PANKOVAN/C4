@@ -1,83 +1,129 @@
 specification {
-    // Define whatever you want
-    element system_user {
-        title 'Пользователь'
-        description 'Пользователь системы'
+    element group {
+        notation "Группа"
+        style {
+            shape rectangle
+            opacity 30%
+
+        }
+    }
+
+    element staff {
+        notation "Пользователи системы"
         style {
             shape person
             color primary
             opacity 10%
-        }
-    }
-    element system {
-        title 'Система'
-        description 'Система'
-        style {
-            shape rectangle
-            opacity 10%
+            size medium
+            color green
         }
     }
     element container {
-        title 'Контейнер'
-        description 'Контейнер'
+        notation "Контейнер системы"
         style {
             shape rectangle
             opacity 10%
+            size xlarge
         }
     }
     element component {
-        title 'Компонент'
-        description 'Компонент'
+        notation "Компонент системы"
         style {
             shape component
             opacity 10%
             icon tech:nodejs
+            size large
         }
     }
     element worker {
-        title 'Рабочий процесс'
-        description 'Рабочий процесс'
+        notation "Рабочий процесс системы"
         style {
             shape component
-            color secondary
             opacity 10%
-            icon tech:nodejs
+            size large
+            color muted
+
+        }
+    }
+    element spa {
+        notation "Web-приложение"
+        style {
+            shape browser
+            opacity 10%
+            size large
+        }
+    }
+    element api {
+        notation "API"
+        style {
+            shape component
+            opacity 10%
+            size large
         }
     }
     element storage {
-        title 'Хранилище'
-        description 'Хранилище'
+        notation "Долговременное хранилище"
         style {
             shape storage
-            color green
+            color indigo
             opacity 10%
+            size large
         }
     }
-    element external_service {
-        title 'Внешний сервис'
-        description 'Внешний сервис'
+    element cash_storage {
+        notation "Хранилище с кэшем."
         style {
-            shape rectangle
+            shape storage
+            color indigo
+            opacity 10%
+            size large
+        }
+    }
+    element log_storage {
+        notation "Хранилище логов"
+        style {
+            shape storage
+            color indigo
+            opacity 10%
+            size large
+        }
+    }
+    element cash {
+        notation "Кэш"
+        style {
+            shape storage
+            color indigo
+            opacity 10%
+            size large
+        }
+    }
+
+    element external_service {
+        notation "Внешний сервис"
+        style {
+            shape component
             color gray
             opacity 10%
+            size medium
         }
     }
     element external_queue {
-        title 'Внешняя очередь'
-        description 'Внешняя очередь'
+        title "Внешняя очередь"
+        description "Внешняя очередь"
         style {
             shape queue
             color gray
             opacity 10%
+            size medium
         }
     }
     element external_db {
-        title 'Внешняя база данных'
-        description 'Внешняя база данных'
+        notation "Внешняя база данных"
         style {
             shape storage
             color gray
             opacity 10%
+            size medium
         }
     }
 }

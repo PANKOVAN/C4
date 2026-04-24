@@ -214,6 +214,7 @@ views {
         include nsi, esp, aso
         include source, bin, sts
         include target, m2033, ecma
+        autoLayout LeftRight 120 100
     }
 
     view spa_view {
@@ -227,6 +228,7 @@ views {
         include api
         include admin, operator
         include storage, secret_storage, session_storage, nsi_storage, stat_storage, operational_storage, log_storage, external_storage
+        autoLayout TopBottom 75 50
     }
 
     view service_view {
@@ -240,7 +242,7 @@ views {
         include storage
         include bin, sts, m2033, ecma
         include external
-        autoLayout TopBottom
+        autoLayout TopBottom 90 60
     }
 
     view aoc_worker_view {
@@ -252,7 +254,7 @@ views {
         include bin
         include operational_storage
         include ecma_worker
-
+        autoLayout LeftRight 70 50
     }
     view bin_worker_view {
         title 'Обработка BIN'
@@ -265,6 +267,7 @@ views {
         include external_storage
         include nsi_storage
         include stat_storage
+        autoLayout LeftRight 75 50
     }
     view sts_worker_view {
         title 'Чтение и обработка STS'
@@ -274,6 +277,7 @@ views {
         include sts_worker
         include operational_storage
         include ecma_worker
+        autoLayout LeftRight 70 50
     }
     view ecma_worker_view {
         title 'Анализ ошибок и отправка в ECMA'
@@ -283,6 +287,7 @@ views {
         include ecma_worker
         include operational_storage
         include ecma
+        autoLayout LeftRight 70 50
     }
     view esr_worker_view {
         title 'Обновление НСИ'
@@ -291,6 +296,7 @@ views {
         '''
         include esr_worker
         include nsi_storage
+        autoLayout TopBottom 60 40
     }
     view esp_worker_view {
         title 'Чтение и обработка данных из ЕС ПУЛ'
@@ -300,6 +306,7 @@ views {
         include esp_worker
         include esp
         include nsi_storage
+        autoLayout LeftRight 70 50
     }
     view aso_worker_view {
         title 'Чтение и обработка данных из ЕМД ПП'
@@ -311,6 +318,7 @@ views {
         include operational_storage
         include ecma_worker
         include stat_storage
+        autoLayout LeftRight 70 50
     }
     view clone_worker_view {
         title 'Создание и чистка оперативных таблиц'
@@ -320,6 +328,7 @@ views {
         include clone_worker
         include operational_storage
         include log_storage
+        autoLayout LeftRight 70 50
     }
 }
 

@@ -1,0 +1,1 @@
+import{a8 as o,j as t}from"./likec4-ChhiuLO2.js";import{R as i,T as s}from"./i-yva3i_bH.js";import"./e-Cmf4MtNh.js";function v(){const e=i(),r=o();return t.jsx(s,{view:r,onNavigateToProject:e})}export{v as ProjectsOverviewPage};

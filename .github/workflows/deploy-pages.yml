@@ -34,17 +34,27 @@ jobs:
           set -e
           sudo apt-get update -qq
           sudo apt-get install -y pandoc
-          # Project Pages: base_path = /repo-name; user site at org root: often empty → вьюер в /viewer/
-          if [ -z "$BASE_PATH" ] || [ "$BASE_PATH" = "" ]; then
+          # Base URL вьюера: /REPO/viewer/ для project pages (pankovan.github.io/REPO/…).
+          # Если base_path с configure-pages пустой, часто ассеты уезжают на /viewer/… и 404.
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          if [ -n "$BASE_PATH" ] && [ "$BASE_PATH" != "" ]; then
+            BP="${BASE_PATH}"
+            [ "${BP#/}" = "$BP" ] && BP="/$BP"
+            LIKEC4_BASE="${BP%/}/viewer/"
+          elif [[ "$REPO_NAME" == *.github.io ]]; then
             LIKEC4_BASE="/viewer/"
           else
-            LIKEC4_BASE="${BASE_PATH}/viewer/"
+            LIKEC4_BASE="/${REPO_NAME}/viewer/"
           fi
+          echo "LIKEC4_BASE=$LIKEC4_BASE (BASE_PATH from Pages=$BASE_PATH, repo=$REPO_NAME)"
           npx likec4@latest build \
             --base "$LIKEC4_BASE" \
             --use-hash-history \
             -t "КИ-Ц САИ ПС.ИНП" \
             --output dist
+          mkdir -p _site
+          # иначе Jekyll на github.io может портить отдачу статики
+          touch _site/.nojekyll
           mkdir -p _site/viewer
           cp -a dist/. _site/viewer/
           # GitHub Pages: по несуществующему пути отдать SPA (глубокие ссылки без hash)
